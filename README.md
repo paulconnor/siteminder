@@ -4,7 +4,7 @@
 
 > helm repo add sm_helm_charts https://paulconnor.github.io/siteminder/
 
-> helm repo update*
+> helm repo update
 
 ## 2. Set environment variables
 > export SM_ADMIN_USER=$(echo "admin-user" | base64 )
