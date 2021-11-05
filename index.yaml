@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  siteminder:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2021-11-05T06:21:51.385125936Z"
+    description: A Helm chart for Siteminder deployments
+    digest: 58f968a54f7ee701414f56e3e5664a535527a3365ff6b76b9281145815682961
+    name: siteminder
+    type: application
+    urls:
+    - siteminder-0.1.2.tgz
+    version: 0.1.2
+generated: "2021-11-05T06:21:51.38402343Z"
