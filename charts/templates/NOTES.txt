@@ -1,3 +1,0 @@
-Thank you for installing {{ .Chart.Name }}.
-
-Make sure to follow the instructions for post deployment configuration
