@@ -30,7 +30,7 @@ Run the post-install.sh script
 
 
 
-## 5. Update your DNS or hosts file with the following
+## 3. Update your DNS or hosts file with the following
 
 > kubectl get svc -n ${SM_NAMESPACE} | grep caag | awk -v host=${SM_FQDN}  '{print $4 " " host}'
 
