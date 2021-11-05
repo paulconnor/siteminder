@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.siteminder.pm.name }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.siteminder.pm.name }}
+  replicas: 1 
+  revisionHistoryLimit: 0
+  progressDeadlineSeconds: 30
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.siteminder.pm.name }}
+    spec:
+      containers:
+        - args:
+            - /sbin/init
+          env:
+            - name: fqdn
+              value: {{ .Values.siteminder.pm.fqdn }}
+          image: pconnor/casso:latest
+          name: {{ .Values.siteminder.pm.name }}
+          ports:
+            - containerPort: 8443
+            - containerPort: 44441
+            - containerPort: 44442
+            - containerPort: 44443
+            - containerPort: 44444
+          resources: {}
+          securityContext:
+            privileged: true
+          volumeMounts:
+            - mountPath: /sys/fs/cgroup
+              name: {{ .Values.siteminder.pm.persistence.name }}
+              readOnly: false
+      hostname: {{ .Values.siteminder.pm.host }}
+      restartPolicy: Always
+      volumes:
+        - name: {{ .Values.siteminder.pm.persistence.name }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.siteminder.pm.persistence.name }}
+            readOnly: false
+status: {}

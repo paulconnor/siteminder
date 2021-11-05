@@ -1,0 +1,25 @@
+{{- if .Values.siteminder.pm.persistence.enabled }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Values.siteminder.pm.persistence.name }}
+  namespace: {{ .Values.siteminder.namespace }}
+  annotations:
+{{- if .Values.siteminder.pm.persistence.keepAfterUninstall }}
+    "helm.sh/resource-policy": keep
+{{- end }}
+spec:
+{{- if .Values.siteminder.pm.persistence.storageClass }}
+{{- if (eq "-" .Values.siteminder.pm.persistence.storageClass) }}
+  storageClassName: ""
+{{- else }}
+  storageClassName: "{{ .Values.siteminder.pm.persistence.storageClass }}"
+{{- end }}
+{{- end }}
+  accessModes:
+    - {{ .Values.siteminder.pm.persistence.accessMode }}
+  resources:
+    requests:
+      storage: {{ .Values.siteminder.pm.persistence.size }}
+{{- end }}
+

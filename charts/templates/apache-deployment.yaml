@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.siteminder.apache.name }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.siteminder.apache.name }}
+  replicas: 1 
+  revisionHistoryLimit: 0
+  progressDeadlineSeconds: 30
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.siteminder.apache.name }}
+    spec:
+      containers:
+        - args:
+            - /sbin/init
+          image: pconnor/apache:latest
+          name: apache
+          ports:
+            - containerPort: 443
+            - containerPort: 80
+          resources: {}
+          securityContext:
+            privileged: true
+          volumeMounts:
+            - mountPath: /sys/fs/cgroup
+              name: {{ .Values.siteminder.apache.persistence.name }}
+              readOnly: false
+      hostname: {{ .Values.siteminder.apache.host }}
+      restartPolicy: Always
+      volumes:
+        - name: {{ .Values.siteminder.apache.persistence.name }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.siteminder.apache.persistence.name }}
+            readOnly: false
+status: {}

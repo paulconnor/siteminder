@@ -1,0 +1,61 @@
+# Default values for ssp-analytics.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+#
+
+siteminder:
+  namespace: siteminder
+  secret: "cGVuZGluZw=="
+  username: "cGVuZGluZw=="
+  password: "cGVuZGluZw=="
+  ag:
+    name: caag
+    host: caag
+    fqdn: rapidsso.iamdemo.broadcom.com
+    rapidsso_ps_addr: "casso"
+    rapidsso_smhost_conf: "/opt/CA/secure-proxy/proxy-engine/conf/defaultagent/SmHost.conf"
+    rapidsso_trusted_host_name: "rapidsso"
+    rapidsso_host_config: "DefaultHostSettings"
+    persistence:
+        name: ag-pvc
+        enabled: true
+        accessMode: ReadWriteOnce
+        size: "100Mi"
+        storageClass: ""
+        keepAfterUninstall: false
+        existingPVCName: ""
+  pm:
+    name: casso
+    host: casso
+    fqdn: rapidsso.iamdemo.broadcom.com
+    persistence:
+        name: pm-pvc
+        enabled: true
+        accessMode: ReadWriteOnce
+        size: "100Mi"
+        storageClass: ""
+        keepAfterUninstall: false
+        existingPVCName: ""
+  dir:
+    name: cadir
+    host: cadir
+    persistence:
+        name: dir-pvc
+        enabled: true
+        accessMode: ReadWriteOnce
+        size: "100Mi"
+        storageClass: ""
+        keepAfterUninstall: false
+        existingPVCName: ""
+  apache:
+    name: apache
+    host: apache
+    persistence:
+        name: apache-pvc
+        enabled: true
+        accessMode: ReadWriteOnce
+        size: "100Mi"
+        storageClass: ""
+        keepAfterUninstall: false
+        existingPVCName: ""
+
