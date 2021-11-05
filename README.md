@@ -22,7 +22,7 @@
 > export SM_KEYFILE=${SM_HOME}/certs/my-server.key
 
 ## 3. Install 
-> helm install rapidsso sm_helm_charts -n ${SM_NAMESPACE} --set siteminder.username=${SM_ADMIN_USER} --set siteminder.password=${SM_ADMIN_PASSWORD} --set siteminder.namespace=$(SM_NAMESPACE} --set siteminder.ag.fqdn=${SM_FQDN}
+> helm install rapidsso sm_helm_charts -n ${SM_NAMESPACE} --set siteminder.username=${SM_ADMIN_USER} --set siteminder.password=${SM_ADMIN_PASSWORD} --set siteminder.namespace=${SM_NAMESPACE} --set siteminder.ag.fqdn=${SM_FQDN}
    
 
 ## 4. Set some POD parameters to help scaling
