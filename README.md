@@ -6,7 +6,7 @@
 
 > helm repo update*
 
-
+## 2. Set environment variables
 > export SM_ADMIN_USER=$(echo "admin-user" | base64 )
  
 > export SM_ADMIN_PASSWORD=$( echo "admin-password" | base64 )
@@ -21,16 +21,17 @@
 
 > export SM_KEYFILE=${SM_HOME}/certs/my-server.key
 
+## 3. Install 
 > helm install rapidsso sm_helm_charts -n ${SM_NAMESPACE} --set siteminder.username=${SM_ADMIN_USER} --set siteminder.password=${SM_ADMIN_PASSWORD} --set siteminder.namespace=$(SM_NAMESPACE} --set siteminder.ag.fqdn=${SM_FQDN}
    
 
-## 2. Load your certificates for all CAAG PODS
+## 4. Set some POD parameters to help scaling
 
 Run the post-install.sh script
+> ./post-install.sh 
 
 
-
-## 3. Update your DNS or hosts file with the following
+## 5. Update your DNS or hosts file with the following
 
 > kubectl get svc -n ${SM_NAMESPACE} | grep caag | awk -v host=${SM_FQDN}  '{print $4 " " host}'
 
