@@ -7,9 +7,9 @@
 > helm repo update*
 
 ## 2. Set environment variables
-> export SM_ADMIN_USER=$(echo <admin-user> | base64 )
+> export SM_ADMIN_USER=$(echo \<admin-user\> | base64 )
  
-> export SM_ADMIN_PASSWORD=$( echo <admin-password> | base64 )
+> export SM_ADMIN_PASSWORD=$( echo \<admin-password\> | base64 )
  
 > export SM_NAMESPACE=<>
  
