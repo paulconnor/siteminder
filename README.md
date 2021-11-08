@@ -22,7 +22,7 @@
 > export SM_KEYFILE=${SM_HOME}/certs/my-server.key
 
 ## 3. Install 
-kubectl create ns ${SM_NAMESPACE}
+kubectl create ns ${SM_NAMESPACE} 
 
 helm install rapidsso sm_helm_charts/siteminder -n ${SM_NAMESPACE} --set siteminder.username=${SM_ADMIN_USER} --set siteminder.password=${SM_ADMIN_PASSWORD} --set siteminder.namespace=${SM_NAMESPACE} --set siteminder.ag.fqdn=${SM_FQDN}
 
