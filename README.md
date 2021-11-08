@@ -4,12 +4,12 @@
 
 > helm repo add sm_helm_charts https://paulconnor.github.io/siteminder/
 
-> helm repo update
+> helm repo update*
 
 ## 2. Set environment variables
-> export SM_ADMIN_USER=$(echo "admin-user" | base64 )
+> export SM_ADMIN_USER=$(echo \<admin-user\> | base64 )
  
-> export SM_ADMIN_PASSWORD=$( echo "admin-password" | base64 )
+> export SM_ADMIN_PASSWORD=$( echo \<admin-password\> | base64 )
  
 > export SM_NAMESPACE=<>
  
@@ -22,7 +22,9 @@
 > export SM_KEYFILE=${SM_HOME}/certs/my-server.key
 
 ## 3. Install 
-> helm install rapidsso sm_helm_charts/siteminder -n ${SM_NAMESPACE} --set siteminder.username=${SM_ADMIN_USER} --set siteminder.password=${SM_ADMIN_PASSWORD} --set siteminder.namespace=${SM_NAMESPACE} --set siteminder.ag.fqdn=${SM_FQDN}
+kubectl create ns ${SM_NAMESPACE}
+
+helm install rapidsso sm_helm_charts/siteminder -n ${SM_NAMESPACE} --set siteminder.username=${SM_ADMIN_USER} --set siteminder.password=${SM_ADMIN_PASSWORD} --set siteminder.namespace=${SM_NAMESPACE} --set siteminder.ag.fqdn=${SM_FQDN}
 
 Wait for the Pods and Services to complete startup
 
