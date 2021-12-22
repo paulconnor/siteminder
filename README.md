@@ -14,7 +14,9 @@ kubectl create ns ${SM_NAMESPACE}
 
 helm install rapidsso sm_helm_charts/siteminder -n ${SM_NAMESPACE} 
 
-Wait for the Pods and Services to complete startup
+....Wait for the Pods and Services to complete startup
+
+kubectl get pods,svc -n ${SM_NAMESPACE}
 
 
 ## 3. Update your DNS or hosts file with the following
