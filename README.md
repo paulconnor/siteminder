@@ -14,7 +14,7 @@ kubectl create ns ${SM_NAMESPACE}
 
 helm install rapidsso sm_helm_charts/siteminder -n ${SM_NAMESPACE} 
 
-....Wait for the Pods and Services to complete startup
+....Wait for the Pods and Services to complete startup. This could take several minutes after all pods are running as the Siteminder pods have dependencies in their initialisation sequence
 
 kubectl get pods,svc -n ${SM_NAMESPACE}
 
