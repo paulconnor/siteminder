@@ -9,6 +9,7 @@
 
 ## 2. Install 
 export SM_NAMESPACE=?your-namespace?
+
 kubectl create ns ${SM_NAMESPACE} 
 
 helm install rapidsso sm_helm_charts/siteminder -n ${SM_NAMESPACE} 
